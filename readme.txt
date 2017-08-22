@@ -9,15 +9,17 @@ git checkout -b new-branch
 
 
 // Klaarzetten (build)
+crtl-shift-p => verwijder '>' => task build
 
-
-// Starten server 
-
+// Starten server (Dartium)
+crtl-shift-p => verwijder '>' => task serve
+C:\Program Files\Dart\chromium\chrome.exe (of aanklikken)
 
 // Localhost
-http://localhost:4200/
+http://localhost:8080/
 
 // Info
+https://github.com/ibebbs/YearInReview/blob/master/web/timeline.dart
 
 // Get Started
 https://www.dartlang.org/guides/get-started

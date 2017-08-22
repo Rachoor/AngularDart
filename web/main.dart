@@ -1,5 +1,5 @@
 import 'dart:html';
 
 void main() {
-  querySelector('.header').text = 'Hello World in AngularDart';
+  querySelector('#initView').text = 'Hello World in AngularDart';
 }
