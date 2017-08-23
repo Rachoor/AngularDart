@@ -15,7 +15,7 @@ import 'person.dart';
     </div>''',
   directives: const [COMMON_DIRECTIVES],
 )
-class HeroDetailComponent {
+class PersonDetailComponent {
   @Input()
   Person person;
 }

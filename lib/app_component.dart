@@ -1,16 +1,10 @@
+import 'dart:async';
+
 import 'package:angular2/angular2.dart';
 
-import 'person.dart';
-import 'person_detail_component.dart';
-
-final List<Person> allPersons = [
-  new Person(11, 'Luke'),
-  new Person(12, 'Robert'),
-  new Person(13, 'Chris'),
-  new Person(14, 'Jake'),
-  new Person(15, 'Paul'),
-  new Person(16, 'Brian')
-];
+import 'src/person.dart';
+import 'src/person_detail_component.dart';
+import 'src/person_service.dart';
 
 @Component(
   selector: 'my-app',
@@ -24,14 +18,7 @@ final List<Person> allPersons = [
         <span class="badge">{{person.id}}</span> {{person.name}}
       </li>
     </ul>
-    <div *ngIf="selectedPerson != null">
-      <h2>{{selectedPerson.name}} details!</h2>
-      <div><label>id: </label>{{selectedPerson.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedPerson.name" placeholder="name"/>
-      </div>
-    </div>
+    <person-detail [person]="selectedPerson"></person-detail>
   ''',
    styles: const [
     '''
@@ -83,12 +70,25 @@ final List<Person> allPersons = [
       }
     '''
   ],
-  directives: const [COMMON_DIRECTIVES],
+  directives: const [CORE_DIRECTIVES, PersonDetailComponent],
+  providers: const [PersonService],
 )
 class AppComponent {
   final title = 'Persons list';
-  final List<Person> persons = allPersons;
+  List<Person> persons;
   Person selectedPerson;
+
+  final PersonService _personService;
+
+  AppComponent(this._personService);
+
+  Future<Null> getPersons() async {
+    persons = await _personService.getPersons();
+  }
+
+  void ngOnInit() {
+    getPersons();
+  }
 
   void onSelect(Person person) {
     selectedPerson = person;
