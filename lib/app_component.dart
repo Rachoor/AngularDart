@@ -1,13 +1,9 @@
 import 'package:angular2/angular2.dart';
 
-class Person {
-  final int id;
-  String name;
+import 'person.dart';
+import 'person_detail_component.dart';
 
-  Person(this.id, this.name);
-}
-
-final allPersons = <Person>[
+final List<Person> allPersons = [
   new Person(11, 'Luke'),
   new Person(12, 'Robert'),
   new Person(13, 'Chris'),
@@ -63,7 +59,7 @@ final allPersons = <Person>[
         color: white;
       }
       .persons li:hover {
-        color: #607D8B;
+        color: #333333;
         background-color: #EEE;
         left: .1em;
       }
@@ -90,6 +86,11 @@ final allPersons = <Person>[
   directives: const [COMMON_DIRECTIVES],
 )
 class AppComponent {
-  String title = 'List of persons';
-  Person person = new Person(1, 'Jerome');
+  final title = 'Persons list';
+  final List<Person> persons = allPersons;
+  Person selectedPerson;
+
+  void onSelect(Person person) {
+    selectedPerson = person;
+  }
 }
